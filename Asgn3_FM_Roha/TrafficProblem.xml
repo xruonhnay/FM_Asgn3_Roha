@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+chan free_centre, get_centre ;
+int a=0,b=1,c=1,d=1;
+
+void change1(){
+b=0;
+a=1;
+c=1;
+d=1;
+}
+void change2(){
+c=0;
+a=1;
+b=1;
+d=1;
+}
+void change3(){
+d=0;
+a=1;
+b=1;
+c=1;
+}
+void change4(){
+a=0;
+b=1;
+c=1;
+d=1;
+}</declaration>
+	<template>
+		<name x="5" y="5">traffic_kashmir</name>
+		<declaration>// Place local declarations here.
+clock c4;</declaration>
+		<location id="id0" x="-552" y="-195" color="#ffff00">
+			<name x="-594" y="-229">Yellow2</name>
+			<label kind="invariant" x="-562" y="-178">c4&lt;=4</label>
+		</location>
+		<location id="id1" x="-221" y="-654" color="#ff0000">
+			<name x="-231" y="-688">Red</name>
+		</location>
+		<location id="id2" x="149" y="-229" color="#ffff00">
+			<name x="139" y="-263">Yellow</name>
+			<label kind="invariant" x="139" y="-212">c4&lt;=4</label>
+		</location>
+		<location id="id3" x="-212" y="-178" color="#00ff00">
+			<name x="-222" y="-212">Green</name>
+			<label kind="invariant" x="-222" y="-161">c4&lt;=70</label>
+		</location>
+		<init ref="id3"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-509" y="-420">free_centre!</label>
+			<label kind="assignment" x="-518" y="-391">change1()</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id0"/>
+			<label kind="assignment" x="-510" y="-204">c4=0</label>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="26" y="-442">a==0</label>
+			<label kind="synchronisation" x="17" y="-408">get_centre!</label>
+			<label kind="assignment" x="-85" y="-467">c4=0</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="-280" y="-178">c4=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>traffic_g11</name>
+		<declaration>clock c3;</declaration>
+		<location id="id4" x="-42" y="425" color="#ffff00">
+			<name x="-52" y="391">Yellow2</name>
+			<label kind="invariant" x="-52" y="442">c3&lt;=4</label>
+		</location>
+		<location id="id5" x="199" y="22" color="#ff0000">
+			<name x="189" y="-12">Red</name>
+		</location>
+		<location id="id6" x="331" y="467" color="#00ff00">
+			<name x="321" y="433">Green</name>
+			<label kind="invariant" x="321" y="484">c3&lt;=40</label>
+		</location>
+		<location id="id7" x="700" y="396" color="#ffff00">
+			<name x="690" y="362">Yellow</name>
+			<label kind="invariant" x="690" y="413">c3&lt;=4</label>
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="42" y="205">free_centre!</label>
+			<label kind="assignment" x="8" y="246">change4()</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id4"/>
+			<label kind="assignment" x="0" y="433">c3=0</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id7"/>
+			<label kind="guard" x="433" y="127">d==0</label>
+			<label kind="synchronisation" x="459" y="144">get_centre!</label>
+			<label kind="assignment" x="432" y="175">c3=0</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="272" y="467">c3=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>traffic_NUST</name>
+		<declaration>clock c2;</declaration>
+		<location id="id8" x="24" y="421" color="#ffff00">
+			<name x="14" y="387">Yellow2</name>
+			<label kind="invariant" x="14" y="438">c2&lt;=4</label>
+		</location>
+		<location id="id9" x="306" y="-59" color="#ff0000">
+			<name x="296" y="-93">Red</name>
+		</location>
+		<location id="id10" x="340" y="408" color="#00ff00">
+			<name x="330" y="374">Green</name>
+			<label kind="invariant" x="330" y="425">c2&lt;=40</label>
+		</location>
+		<location id="id11" x="700" y="396" color="#ffff00">
+			<name x="690" y="362">Yellow1</name>
+			<label kind="invariant" x="690" y="413">c2&lt;=4</label>
+		</location>
+		<init ref="id9"/>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="34" y="195">free_centre!</label>
+			<label kind="assignment" x="34" y="229">change3()</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id8"/>
+			<label kind="assignment" x="51" y="416">c2=0</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id11"/>
+			<label kind="guard" x="544" y="127">c==0</label>
+			<label kind="synchronisation" x="544" y="187">get_centre!</label>
+			<label kind="assignment" x="459" y="161">c2=0</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="assignment" x="289" y="416">c2=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>traffic_zeropoint</name>
+		<declaration>clock c1;</declaration>
+		<location id="id12" x="-444" y="-221" color="#ffff00">
+			<name x="-493" y="-255">Yellow2</name>
+			<label kind="invariant" x="-454" y="-204">c1&lt;=4</label>
+		</location>
+		<location id="id13" x="-153" y="-671" color="#ff0000">
+			<name x="-163" y="-705">Red</name>
+		</location>
+		<location id="id14" x="-127" y="-238" color="#00ff00">
+			<name x="-137" y="-272">Green</name>
+			<label kind="invariant" x="-163" y="-221">c1&lt;=70</label>
+		</location>
+		<location id="id15" x="232" y="-246" color="#ffff00">
+			<name x="222" y="-280">Yellow1</name>
+			<label kind="invariant" x="222" y="-229">c1&lt;=4</label>
+		</location>
+		<init ref="id13"/>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="-340" y="-518">free_centre!</label>
+			<label kind="assignment" x="-357" y="-467">change2()</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id12"/>
+			<label kind="assignment" x="-416" y="-221">c1=0</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id15"/>
+			<label kind="guard" x="34" y="-493">b==0</label>
+			<label kind="synchronisation" x="59" y="-476">get_centre!</label>
+			<label kind="assignment" x="-51" y="-510">c1=0</label>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id14"/>
+			<label kind="assignment" x="-110" y="-238">c1=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>centre</name>
+		<location id="id16" x="119" y="-17">
+			<name x="109" y="-51">acquired</name>
+		</location>
+		<location id="id17" x="-221" y="-25">
+			<name x="-231" y="-59">free</name>
+		</location>
+		<init ref="id16"/>
+		<transition>
+			<source ref="id16"/>
+			<target ref="id17"/>
+			<label kind="synchronisation" x="-68" y="127">free_centre?</label>
+			<nail x="42" y="85"/>
+			<nail x="9" y="111"/>
+			<nail x="-25" y="119"/>
+			<nail x="-76" y="119"/>
+			<nail x="-161" y="76"/>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="-76" y="-170">get_centre?</label>
+			<nail x="-110" y="-110"/>
+			<nail x="-42" y="-127"/>
+			<nail x="17" y="-110"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+T1 = traffic_kashmir();
+T2 = traffic_g11();
+T3 = traffic_NUST();
+T4 = traffic_zeropoint();
+// List one or more processes to be composed into a system.
+system T1,T2,T3,T4,centre;
+
+//Roha Asad 
+//BESE-6B
+
+    </system>
+	<queries>
+	</queries>
+</nta>
